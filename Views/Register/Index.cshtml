@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Contry_State_City.Models.Register>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="text-primary text-center">User List</h2>
+@Html.ActionLink("New User", "Upsert", "Register", new { @class = "btn btn-info" })
+<br />
+@if (!Model.Any())
+{
+    <p class="text-danger">No Data Found</p>
+}
+else
+{
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Gender</th>
+                <th>IsSubscribe</th>
+                <th>Country</th>
+                <th>State</th>
+                <th>City</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var reg in Model)
+            {
+                    using (Html.BeginForm("Delete", "register",new{ id = reg.Id }))
+                    {
+                        <tr>
+                            <td>@reg.Name</td>
+                            <td>@reg.Address</td>
+                            <td>@reg.Email</td>
+                            <td>@reg.Gender</td>
+                            @*<td>@reg.IsSubscribe</td>*@
+                            <td>@Html.DisplayFor(m=>reg.IsSubscribe)</td>
+                            <td>@reg.City.State.Country.Name</td>
+                            <td>@reg.City.State.Name</td>
+                            <td>@reg.City.Name</td>
+                            <td>
+                                @Html.ActionLink("Edit", "Upsert", new { id = reg.Id }, new {@class="btn btn-info"})
+                                @Html.ActionLink("Details", "Details", new {id=reg.Id},new { @class = "btn btn-info" })
+                                <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Want to Delete the Data?')"/>
+                            </td>
+                        </tr>
+                    }
+            }
+        </tbody>
+    </table>
+}

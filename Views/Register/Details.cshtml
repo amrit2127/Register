@@ -1,0 +1,35 @@
+﻿@model Contry_State_City.Models.Register
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 class="text-primary">User Details</h2>
+
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Email</th>
+            <th>Gender</th>
+            <th>Is Subscribe</th>
+            <th>Country</th>
+            <th>State</th>
+            <th>City</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.Name</td>
+            <td>@Model.Address</td>
+            <td>@Model.Email</td>
+            <td>@Model.Gender</td>
+            <td>@Html.DisplayFor(m=>m.IsSubscribe)</td>
+            <td>@Model.City.State.Country.Name</td>
+            <td>@Model.City.State.Name</td>
+            <td>@Model.City.Name</td>
+        </tr>
+    </tbody>
+</table>
+
+
